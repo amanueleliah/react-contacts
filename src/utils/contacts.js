@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const getContacts = () => {
-    const contacts = JSON.parse(localStorage.getItem('contacts')) ?? [];
-    return contacts;
+    const contacts = localStorage.getItem('contacts') ?? '[]';
+    return JSON.parse(contacts);
 }
 
-export const createContact = ({ firstName, lastName, phoneNumber, email, address, profilePic }) => {
-    const contacts = JSON.parse(localStorage.getItem('contacts')) ?? [];
+export const addContact = ({ firstName, lastName, phoneNumber, email, address, profilePic }) => {
+    let contacts = localStorage.getItem('contacts') ?? '[]';
+    contacts = JSON.parse(contacts)
 
     const newContact = {
         id: uuidv4(),
@@ -25,7 +26,8 @@ export const createContact = ({ firstName, lastName, phoneNumber, email, address
 }
 
 export const deleteContact = (id) => {
-    const contacts = JSON.parse(localStorage.getItem('contacts')) ?? [];
-    const newContacts = contacts.filter((contact) => contact.id !== id);
-    localStorage.setItem('contacts', JSON.stringify(newContacts));
+    let contacts = localStorage.getItem('contacts') ?? '[]';
+    contacts = JSON.parse(contacts)
+    contacts = contacts.filter((contact) => contact.id !== id);
+    localStorage.setItem('contacts', JSON.stringify(contacts));
 }

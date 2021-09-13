@@ -1,10 +1,13 @@
 import React from "react";
+
 import LoginPage from "./login"
 import RegisterPage from "./register";
 import ContactsPage from "./contacts";
 import ContactDetailsPage from "./contact-details";
 import ContactCreatePage from "./contact-create";
 import { getContacts } from "../utils/contacts";
+import ReactHooks from "./reactHooks/ReactHooks";
+import PlayGround from "./reactHooks/PlayGround";
 
 const mockContacts = [
   {
@@ -68,10 +71,12 @@ class App extends React.Component {
     return (
       <div>
         <LoginPage />
-        <RegisterPage />
+        <RegisterPage /> 
         <ContactsPage contacts={this.state.contacts} />
         <ContactDetailsPage contact={this.state.contacts[0]} />
         <ContactCreatePage />
+        {/* <ReactHooks/> */}
+         {/* <PlayGround/> */}
       </div>
     );
   }

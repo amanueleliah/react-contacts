@@ -1,21 +1,13 @@
 export const login = (username, password) => {
-    const auth = JSON.parse(localStorage.getItem('auth')) ?? {};
-    // Passwords should never be stored in plain text as is done in the code below.
-    // This code serves as just a demonstration and is not intended as an example
-    // of production ready code.
-    return auth[username]?.password === password
+    return localStorage.getItem(username) === password
+        ? username
+        : null;
 }
 
 export const createUser = (username, password) => {
-    const auth = JSON.parse(localStorage.getItem('auth')) ?? {};
-
-    if (auth[username]) {
+    if (localStorage.getItem(username)) {
         throw new Error(`User ${username} already exists.`);
     }
 
-    // Passwords should never be stored in plain text as is done in the code below.
-    // This code serves as just a demonstration and is not intended as an example
-    // of production ready code.
-    auth[username] = { password };
-    localStorage.setItem('auth', JSON.stringify(auth));
+    localStorage.setItem(username, password);
 }
